@@ -18,14 +18,14 @@ app.get("/", function (req, res) {
   async function run() {
     try {
       const database = client.db("ckmdb");
-      const movies = database.collection("cmps415");
+      const parts = database.collection("cmps415");
 
-      // Query for a movie that has the title 'Back to the Future'
+      // Query for a part that has partID '12345'
       const query = { partID: "12345" };
-      const movie = await movies.findOne(query);
+      const part = await parts.findOne(query);
 
-      console.log(movie);
-      res.send(movie);
+      console.log(part);
+      res.send(part);
     } finally {
       // Ensures that the client will close when you finish/error
       await client.close();
@@ -33,3 +33,19 @@ app.get("/", function (req, res) {
   }
   run().catch(console.dir);
 });
+
+async function run() {
+  try {
+    const database = client.db("ckmdb");
+    const parts = database.collection("cmps415");
+
+    // Query for a part that has partID '12345'
+    const query = { partID: "12345" };
+    const part = await parts.findOne(query);
+
+    console.log(part);
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
