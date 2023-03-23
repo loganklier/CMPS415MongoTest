@@ -8,13 +8,13 @@ const client = new MongoClient(uri);
 async function run() {
   try {
     const database = client.db('ckmdb');
-    const movies = database.collection('cmps415');
+    const parts = database.collection('cmps415');
 
-    // Query for a movie that has the title 'Back to the Future'
+    // Query for a part that has partID '12345'
     const query = { partID: '12345' };
-    const movie = await movies.findOne(query);
+    const part = await parts.findOne(query);
 
-    console.log(movie);
+    console.log(part);
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
